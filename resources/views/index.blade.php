@@ -24,7 +24,7 @@
     <div class="col-3"></div>
     <div class="col-2"></div>
     <div class="col-1">
-        <button type="button" class="btn btn-outline-danger">Agregar nueva casa</button>
+        <a name="" id="" class="btn btn-outline-danger" href="/agregarcasa" role="button">Agregar nueva casa</a>
     </div>
 </div>
 <div class="row">
