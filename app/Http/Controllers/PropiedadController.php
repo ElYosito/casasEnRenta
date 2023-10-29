@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Colonia;
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,11 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        //
+        $propiedad = new Propiedad();
+        $colonias = Colonia::all();
+        
+        $propiedades = Propiedad::all();
+        return view('index', compact('propiedades', 'colonias','propiedad'));
     }
 
     /**
@@ -34,9 +39,8 @@ class PropiedadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Propiedad $propiedad)
+    public function show()
     {
-        //
     }
 
     /**

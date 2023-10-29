@@ -10,9 +10,9 @@ use App\Models\Colonia;
 class Propiedad extends Model
 {
     use HasFactory;
-    protected $fillable=['titulo','descripcion','precio','imagen','fechaPub','edoPropiedad','tipoPropiedad','habitaciones','id_colonia'];
+    protected $fillable=['titulo','descripcion','precio','imagen','fechaPub','edoPropiedad','tipoPropiedad','habitaciones','colonia_id'];
 
     public function colonias(): BelongsTo{
-        return $this->belongsTo(Colonia::class);
+        return $this->belongsTo(Colonia::class,);
     }
 }

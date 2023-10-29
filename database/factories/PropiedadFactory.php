@@ -18,8 +18,8 @@ class PropiedadFactory extends Factory
     public function definition(): array
     {
         return [
-            'titulo'=>fake()->text(50),
-            'descripcion'=>fake()->text(200),
+            'titulo'=>fake()->text(10),
+            'descripcion'=>fake()->text(20),
             'precio'=>fake()->numberBetween(1000, 10000),
             'imagen'=>fake()->city(),
             'fechaPub'=>fake()->date(),
