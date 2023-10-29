@@ -67,12 +67,12 @@
                 </button>
             </div>
             <a style="text-decoration: none;" href="#">
-                <div class="card-body">
-                    <h6 class="card-title text-primary">{{$propiedad->titulo}}</h6>
+                <div class="card-body @if($propiedad->edoPropiedad === 'rentada') text-warning @elseif($propiedad->edoPropiedad === 'publicada') text-success @endif">
+                    <h6 style="font-size: 21px;" class="card-title text-primary">{{$propiedad->titulo}}</h6>
                     <h6 class="card-text text-secondary">Habitaciones: {{$propiedad->habitaciones}}</h6>
                     <h6 class="card-text text-secondary">{{$propiedad->descripcion}}</h6>
                     <h6 class="card-text text-secondary">{{$propiedad->tipoPropiedad}}</h6>
-                    <h6 class="card-text text-secondary">{{$propiedad->edoPropiedad }}</h6>
+                    <h6 class="card-text">{{$propiedad->edoPropiedad }}</h6>
                     <h6 class="card-title text-secondary">{{$propiedad->fechaPub}}</h6>
                     <h5 class="card-text text-dark"><strong>${{$propiedad->precio}} mxm al mes</strong></h5>
                 </div>

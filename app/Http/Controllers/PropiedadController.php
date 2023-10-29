@@ -16,7 +16,7 @@ class PropiedadController extends Controller
         $propiedad = new Propiedad();
         $colonias = Colonia::all();
         
-        $propiedades = Propiedad::all();
+        $propiedades = Propiedad::where('edoPropiedad', '!=', 'eliminada')->get();
         return view('index', compact('propiedades', 'colonias','propiedad'));
     }
 
