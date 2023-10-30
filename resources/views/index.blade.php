@@ -40,28 +40,28 @@
     @foreach($propiedades as $propiedad)
     <div class="col propiedad" data-colonia-id="{{ $propiedad->colonia_id }}" data-edo-propiedad="{{ $propiedad->edoPropiedad }}">
         <div class="card">
-            <div id="carousel1" class="carousel slide">
+            <div id="carousel{{ $propiedad->id }}" class="carousel slide">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carousel{{ $propiedad->id }}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carousel{{ $propiedad->id }}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carousel{{ $propiedad->id }}" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-7602468/original/775720cd-cee0-44a3-aec1-6e135195ef57.jpeg?im_w=1200" class="d-block w-100" alt="...">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-7602468/original/775720cd-cee0-44a3-aec1-6e135195ef57.jpeg?im_w=1200" class="d-block w-100" alt="..." loading="lazy">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-7602468/original/06d9c082-9475-466e-bc7f-735618c32659.jpeg?im_w=1440" class="d-block w-100" alt="...">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-7602468/original/06d9c082-9475-466e-bc7f-735618c32659.jpeg?im_w=1440" class="d-block w-100" alt="..." loading="lazy">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://a0.muscache.com/im/pictures/380b3d77-1a9e-423b-8f64-8189f124dccf.jpg?im_w=1440" class="d-block w-100" alt="...">
+                        <img src="https://a0.muscache.com/im/pictures/380b3d77-1a9e-423b-8f64-8189f124dccf.jpg?im_w=1440" class="d-block w-100" alt="..." loading="lazy">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ $propiedad->id }}" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ $propiedad->id }}" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
