@@ -8,8 +8,8 @@
     }
 </style>
 <br>
-<div class="row">
-    <div class="col">
+<div class="row justify-content-between">
+    <div class="col-3">
         <div class="form-floating">
             <select onchange="filtrarPropiedades()" class="form-select form-select-lg" name="reticula_id" id="select">
                 <option value="">Selecciona una colonia</option>
@@ -21,18 +21,10 @@
         </div>
 
     </div>
-    <div class="col-4"></div>
-    <div class="col-3"></div>
-    <div class="col-2"></div>
     <div class="col-1">
-        <a name="" id="" class="btn btn-outline-danger" href="/agregarcasa" role="button">Agregar nueva casa</a>
+        <a name="" id="" class="btn btn-outline-danger" href="/agregarcasa" role="button">Agregar Propiedad</a>
     </div>
 </div>
-<div class="row">
-
-</div>
-
-
 <br>
 <h1>Encuentra tu nuevo hogar!!</h1>
 

@@ -14,6 +14,10 @@ Route::get('/catalogo', function () {
     return view('arrendador.catalogo');
 });
 
+Route::get('/estadoPropiedades', function () {
+    return view('arrendador.edoP');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
