@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="shortcut icon" href="{{asset('logo.png')}}" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <title>Formulario casas</title>
+    <title>STAYCS - Encuentra tu hogar!!</title>
 </head>
 
 <body>

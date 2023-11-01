@@ -21,9 +21,6 @@
         </div>
 
     </div>
-    <div class="col-1">
-        <a name="" id="" class="btn btn-outline-danger" href="/agregarcasa" role="button">Agregar Propiedad</a>
-    </div>
 </div>
 <br>
 <h1>Encuentra tu nuevo hogar!!</h1>
