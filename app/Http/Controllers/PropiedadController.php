@@ -15,9 +15,18 @@ class PropiedadController extends Controller
     {
         $propiedad = new Propiedad();
         $colonias = Colonia::all();
-        
+
         $propiedades = Propiedad::where('edoPropiedad', '!=', 'eliminada')->get();
-        return view('index', compact('propiedades', 'colonias','propiedad'));
+        return view('index', compact('propiedades', 'colonias', 'propiedad'));
+    }
+
+    public function catalogo()
+    {
+        $propiedad = new Propiedad();
+        $colonias = Colonia::all();
+
+        $propiedades = Propiedad::where('edoPropiedad', '!=', 'eliminada')->get();
+        return view('arrendador.catalogo', compact('propiedades', 'colonias', 'propiedad'));
     }
 
     /**

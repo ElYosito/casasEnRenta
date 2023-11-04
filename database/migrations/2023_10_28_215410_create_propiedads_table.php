@@ -14,14 +14,18 @@ return new class extends Migration
         Schema::create('propiedads', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('titulo',10);
-            $table->string('descripcion',20);
-            $table->decimal('precio',10,2);
-            $table->string('imagen',500);
+            $table->string('titulo', 10);
+            $table->string('descripcion', 20);
             $table->date('fechaPub');
-            $table->string('edoPropiedad');
+            $table->char('habitaciones', 10);
+            $table->string('tipoCasa');
+            $table->string('tipoA');
             $table->string('tipoPropiedad');
-            $table->char('habitaciones',10);
+            $table->json('ubicacion');
+            $table->json('servicios');
+            $table->decimal('precio', 10, 2);
+            $table->string('imagen', 500);
+            $table->string('edoPropiedad');
             $table->foreignId('colonia_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }

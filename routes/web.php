@@ -6,12 +6,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[PropiedadController::class,'index'])->name('index');
 
+Route::get('/catalogo', [PropiedadController::class, 'catalogo']);
+
 Route::get('/agregarcasa', function () {
     return view('formulario');
-});
-
-Route::get('/catalogo', function () {
-    return view('arrendador.catalogo');
 });
 
 Route::get('/estadoPropiedades', function () {
