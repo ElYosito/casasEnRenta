@@ -16,7 +16,7 @@
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a name="" id="" class="btn btn-outline-danger" href="/agregarcasa" role="button">Agregar Propiedad</a>
+            <a name="" id="" class="btn btn-outline-danger" href="/propiedad.create" role="button">Agregar Propiedad</a>
           </li>
         </ul>
       </div>

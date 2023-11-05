@@ -19,10 +19,11 @@ function initMap() {
     });
 
     // Obtener las coordenadas del marcador cuando se suelta (onDragEnd)
-    google.maps.event.addListener(marker, 'dragend', function(event) {
+    google.maps.event.addListener(marker, 'dragend', function (event) {
         var lat = event.latLng.lat();
         var lng = event.latLng.lng();
-        console.log('Nueva ubicación: ' + lat + ', ' + lng);
-        // Aquí puedes guardar estas coordenadas en tu base de datos
+
+        // Actualiza el campo oculto "ubicacion" como un objeto JSON
+        document.getElementById('ubicacion').value = JSON.stringify({ latitud: lat, longitud: lng });
     });
 }

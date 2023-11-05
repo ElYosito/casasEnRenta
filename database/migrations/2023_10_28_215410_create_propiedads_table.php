@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('propiedads', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('titulo', 10);
+            $table->string('titulo', 20);
             $table->string('descripcion', 20);
             $table->date('fechaPub');
             $table->char('habitaciones', 10);
@@ -23,10 +23,8 @@ return new class extends Migration
             $table->string('tipoPropiedad');
             $table->json('ubicacion');
             $table->json('servicios');
-            $table->decimal('precio', 10, 2);
-            $table->string('imagen', 500);
+            $table->decimal('precio');
             $table->string('edoPropiedad');
-            $table->foreignId('colonia_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

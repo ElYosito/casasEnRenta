@@ -26,7 +26,7 @@
 <h1>Encuentra tu nuevo hogar!!</h1>
 
 <div class="row row-cols-1 row-cols-md-6 g-4" id="propiedades-container">
-    @foreach($propiedades as $propiedad)
+    @foreach($propiedads as $propiedad)
     <div class="col propiedad" data-colonia-id="{{ $propiedad->colonia_id }}" data-edo-propiedad="{{ $propiedad->edoPropiedad }}">
         <div class="card">
             <div id="carousel{{ $propiedad->id }}" class="carousel slide">

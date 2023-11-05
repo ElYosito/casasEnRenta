@@ -29,9 +29,10 @@ class PropiedadFactory extends Factory
             'servicios' => json_encode([
                         'wifi' => fake()->boolean,
                         'tv' => fake()->boolean,
-                        'cocina' => fake()->boolean,
+                        'gas' => fake()->boolean,
+                        'luz' => fake()->boolean,
+                        'agua' => fake()->boolean,
                         'lavadora' => fake()->boolean,
-                        'estacionamiento' => fake()->boolean,
                         'aire_acondicionado' => fake()->boolean,
                     ]),
 

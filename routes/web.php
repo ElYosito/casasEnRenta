@@ -2,24 +2,20 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropiedadController;
+use App\Http\Controllers\PruebaController;
 use Illuminate\Support\Facades\Route;
 
+//INICIO
 Route::get('/',[PropiedadController::class,'index'])->name('index');
 
-Route::get('/catalogo', [PropiedadController::class, 'catalogo']);
+//FORMULARIO
+Route::post('/propiedad.store',[PropiedadController::class,'store'])->name('propiedad.store');
+Route::get('/propiedad.create',[PropiedadController::class,'create'])->name('propiedad.create');
+Route::get('/catalogo', [PropiedadController::class, 'catalogo'])->name('arrendador.catalogo');
 
-Route::get('/agregarcasa', function () {
-    return view('formulario');
-});
-
-Route::get('/estadoPropiedades', function () {
-    return view('arrendador.edoP');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+//Route::post('/prueba.store',[PruebaController::class,'store'])->name('prueba.store');
+//Route::get('/prueba.create',[PruebaController::class,'create'])->name('prueba.create');
+//Route::get('/catalogo',[PruebaController::class, 'catalogo']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

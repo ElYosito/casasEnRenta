@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Colonia;
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PropiedadController extends Controller
 {
@@ -16,25 +17,27 @@ class PropiedadController extends Controller
         $propiedad = new Propiedad();
         $colonias = Colonia::all();
 
-        $propiedades = Propiedad::where('edoPropiedad', '!=', 'eliminada')->get();
-        return view('index', compact('propiedades', 'colonias', 'propiedad'));
+        $propiedads = Propiedad::where('edoPropiedad', '!=', 'eliminada')->get();
+        return view('index', compact('propiedads', 'colonias', 'propiedad'));
     }
 
     public function catalogo()
     {
-        $propiedad = new Propiedad();
         $colonias = Colonia::all();
 
-        $propiedades = Propiedad::where('edoPropiedad', '!=', 'eliminada')->get();
-        return view('arrendador.catalogo', compact('propiedades', 'colonias', 'propiedad'));
+        $propiedades = Propiedad::where('edoPropiedad', '!=', 'eliminada')->paginate(7);
+
+        return view('arrendador.catalogo', compact('propiedades', 'colonias'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $propiedad = new Propiedad();
+        return view('formulario', compact('propiedad'));
     }
 
     /**
@@ -42,8 +45,45 @@ class PropiedadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Valida los datos de la propiedad
+        $propiedadValidada = $request->validate([
+            'titulo' => 'required',
+            'descripcion' => 'required',
+            'fechaPub' => 'required',
+            'habitaciones' => 'required',
+            'tipoCasa' => 'required',
+            'tipoA' => 'required',
+            'tipoPropiedad' => 'required',
+            'ubicacion' => 'required',
+            'servicios' => 'required',
+            'precio' => 'required',
+            'edoPropiedad' => 'required'
+        ]);
+
+        // Convierte el campo servicios a una cadena JSON
+        $servicios = json_encode($propiedadValidada['servicios']);
+        $propiedadValidada['servicios'] = $servicios;
+
+        // Crea una nueva propiedad en la base de datos
+        Propiedad::create($propiedadValidada);
+
+        // Completa otros campos de la propiedad si es necesario
+
+        // Almacena las imágenes
+        if ($request->hasFile('images')) {
+            $propiedadId = Propiedad::latest()->first()->id; // Obtén el ID de la propiedad recién creada
+
+            foreach ($request->file('images') as $image) {
+                $nombreDoc = Str::slug($image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/propiedades/' . $propiedadId . '/' . $nombreDoc);
+            }
+        }
+
+        return redirect()->route("arrendador.catalogo");
     }
+
+
+
 
     /**
      * Display the specified resource.
