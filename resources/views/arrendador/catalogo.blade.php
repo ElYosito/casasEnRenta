@@ -24,16 +24,18 @@
                     <td>{{ $propiedad->titulo }}</td>
                     <td>{{ $propiedad->fechaPub }}</td>
                     <td>${{ $propiedad->precio }}</td>
-                    <td><a type="button" class="btn btn-primary" href="#" role="button">Eliminar</a></td>
-                    <td>
-                        <a type="button" class="btn btn-secondary ver-propiedad" href="#">Ver</a>
-                    </td>
-
-
+                    <td><a type="button" class="btn btn-primary" href="{{ route('propiedad.destroy',['propiedad'=>$propiedad->id]) }}" role="button">Eliminar</a></td>
+                    <td><a type="button" class="btn btn-secondary" href="{{ route('propiedad.show',['id'=>$propiedad->id]) }}">Ver</a></td>
                 </tr>
+
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+
+
+
+
+
 @endsection

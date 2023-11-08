@@ -24,6 +24,6 @@ function initMap() {
         var lng = event.latLng.lng();
 
         // Actualiza el campo oculto "ubicacion" como un objeto JSON
-        document.getElementById('ubicacion').value = JSON.stringify({ latitud: lat, longitud: lng });
+        document.getElementById('ubicacion').value = JSON.stringify({ lat,lng });
     });
 }

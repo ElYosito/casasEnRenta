@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('tipoA');
             $table->string('tipoPropiedad');
             $table->json('ubicacion');
-            $table->json('servicios');
+            $table->json('servicios')->nullable();
             $table->decimal('precio');
             $table->string('edoPropiedad');
         });
