@@ -19,10 +19,12 @@
 </div>
 
 
-<div class="row row-cols-1 row-cols-md-6 g-4" id="propiedades-container">
-    @foreach($propiedads as $propiedad)
+<div class="row row-cols-1 row-cols-md-3 g-4" id="propiedades-container">
+    @foreach($propiedades as $propiedad)
     <div class="col propiedad" data-colonia-id="{{ $propiedad->colonia_id }}" data-edo-propiedad="{{ $propiedad->edoPropiedad }}">
         <div class="card">
+
+
             <div id="carousel{{ $propiedad->id }}" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carousel{{ $propiedad->id }}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -58,11 +60,12 @@
                     <form action="{{ route('favoritos.store') }}" method="POST">
                         @csrf
                         <input type="text" name="propiedads_id" value="{{$propiedad->id}}" hidden>
-                        <input type="text" name="user_id" value="{{Auth::user()->id}}" hidden>
 
-                        <button class="btn btn-dangerous" type="submit">
+                        <button class="{{ $favoritosPorPropiedad[$propiedad->id] ? 'text-success' : 'text-danger' }}" type="submit">
                             <i class="fas fa-heart"></i>
                         </button>
+
+                        <input type="text" name="user_id" value="{{Auth::user()->id}}" hidden>
                     </form>
                 </div>
 
@@ -74,6 +77,7 @@
                 <h5 class="card-text text-dark"><strong>${{$propiedad->precio}} mxm al mes</strong></h5>
             </div>
         </div>
+        <div id="alerta"></div>
     </div>
     @endforeach
 </div>

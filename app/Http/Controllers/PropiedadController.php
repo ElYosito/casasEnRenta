@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Colonia;
+use App\Models\Favoritos;
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class PropiedadController extends Controller
 {
@@ -15,21 +14,46 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        $propiedad = new Propiedad();
-        $colonias = Colonia::all();
+        $user_id = auth()->user()->id;
 
-        $propiedads = Propiedad::where('edoPropiedad', '!=', 'eliminada')->get();
-        return view('index', compact('propiedads', 'colonias', 'propiedad'));
+        // Obtén todas las propiedades que no están marcadas como eliminadas
+        $propiedades = Propiedad::where('edoPropiedad', '!=', 'eliminada')->get();
+
+        // Inicializa un array para almacenar los favoritos por propiedad
+        $favoritosPorPropiedad = [];
+
+        // Itera a través de las propiedades para comprobar si son favoritas
+        foreach ($propiedades as $propiedad) {
+            $favorito = Favoritos::where('user_id', $user_id)
+                ->where('propiedads_id', $propiedad->id)
+                ->first();
+
+            // Almacena el resultado en el array asociativo
+            $favoritosPorPropiedad[$propiedad->id] = $favorito;
+        }
+
+        return view('index', compact('favoritosPorPropiedad', 'propiedades'));
     }
 
-    public function catalogo()
-    {
-        $colonias = Colonia::all();
 
-        $propiedades = Propiedad::where('edoPropiedad', '!=', 'eliminada')->paginate(7);
+    public function catalogo(Request $request){
 
-        return view('arrendador.catalogo', compact('propiedades', 'colonias'));
+    $estadoSeleccionado = $request->input('estado');
+    
+    $query = Propiedad::query();
+
+    if ($estadoSeleccionado && $estadoSeleccionado !== 'Selecciona un estado') {
+        $query->where('edoPropiedad', $estadoSeleccionado);
+    } else {
+        $query->where('edoPropiedad', '!=', 'eliminada');
     }
+
+    $propiedades = $query->paginate(7);
+    $estados = Propiedad::distinct()->pluck('edoPropiedad');
+
+    return view('arrendador.catalogo', compact('propiedades', 'estados'));
+}
+
 
 
     /**
@@ -76,33 +100,31 @@ class PropiedadController extends Controller
             $contador = 1; // Inicializa un contador para el nombre de la imagen
 
             foreach ($request->file('images') as $image) {
-                $extension = $image->getClientOriginalExtension();
+                $extension = 'jpg';
                 $nombreDoc = 'imagen' . $contador . '.' . $extension;
                 $image->storeAs('public/propiedades/' . $propiedadId, $nombreDoc);
                 $contador++;
             }
         }
 
-
         return redirect()->route("arrendador.catalogo");
     }
-
-
-
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($propiedad)
     {
-        $propiedad = Propiedad::find($id); // Obtiene la propiedad por su ID
+        $propiedad = Propiedad::find($propiedad); // Obtiene la propiedad por su ID
+        
+        $readonlyInput = true;
 
         if (!$propiedad) {
             // Si la propiedad no existe, puedes manejarlo de acuerdo a tus necesidades, por ejemplo, redirigir o mostrar un error.
             return redirect()->route("arrendador.catalogo");
         }
 
-        return view('arrendador.modal', compact('propiedad'));
+        return view('arrendador.modal', compact('propiedad','readonlyInput'));
     }
 
     /**
@@ -162,6 +184,44 @@ class PropiedadController extends Controller
         return redirect()->route("arrendador.catalogo");
     }
 
+    public function cambiar($propiedad)
+    {
+        $propiedad = Propiedad::find($propiedad);
+
+        if ($propiedad->edoPropiedad == "publicada") {
+
+            $propiedadValidada = ([
+                'edoPropiedad' => "rentada"
+            ]);
+
+            $propiedad->update($propiedadValidada);
+
+            return redirect()->back();
+        } else {
+
+            $propiedadValidada = ([
+                'edoPropiedad' => "publicada"
+            ]);
+
+            $propiedad->update($propiedadValidada);
+
+            return redirect()->back();
+        }
+    }
+
+    public function eliminada($propiedad)
+    {
+        $propiedad = Propiedad::find($propiedad);
+
+        $propiedadValidada = ([
+            'edoPropiedad' => "eliminada"
+        ]);
+
+        $propiedad->update($propiedadValidada);
+
+        return redirect()->back();
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -179,7 +239,6 @@ class PropiedadController extends Controller
 
         // Elimina la propiedad
         $propiedad->delete();
-
         return redirect()->route('arrendador.catalogo');
     }
 }

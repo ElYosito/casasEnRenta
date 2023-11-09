@@ -43,7 +43,8 @@
                                 <input type="date" class="form-control" name="fechaPub" id="fechaPub" readonly>
                             </div>
 
-                            <input type="text" style="display: none;" name="edoPropiedad" id="edoPropiedad" value="publicada">
+                            <input type="text" name="edoPropiedad" id="edoPropiedad" value="publicada" hidden>
+                            
                         </div>
                     </div>
                     <div class="d-flex justify-content-end ">
@@ -149,7 +150,7 @@
             </div>
 
             <div id="servicios" style="max-width: 100%; display: none;" class="container">
-                <h1 style="margin: 0px 0px 100px 0px;">Selecciona los servicios que ofrece tu casa</h1>
+            <h1 style="margin: 0px 0px 100px 0px;">Selecciona los servicios que ofrece tu casa</h1>
                 <div style="font-size: 25px; margin: 0px 0px 90px 0px;" class="container d-flex justify-content-center">
                     <div class="col-2">
                         <div class="form-check form-switch">

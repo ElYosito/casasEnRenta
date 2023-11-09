@@ -15,7 +15,7 @@ class FavoritosController extends Controller
     {
         $user_id = Auth::id();
         $favorito = Favoritos::with('propiedads')->where('user_id', $user_id)->get();
-        return view('favoritos',compact('favorito'));
+        return view('favoritos', compact('favorito'));
     }
 
     /**
@@ -31,12 +31,14 @@ class FavoritosController extends Controller
      */
     public function store(Request $request)
     {
-        $favorito = new Favoritos();
-        $favorito->propiedads_id = $request->propiedads_id;
-        $favorito->user_id = $request->user_id;
-        $favorito->save();
+        $user_id = $request->user_id;
+        $propiedads_id = $request->propiedads_id;
+
+        $favorito = Favoritos::firstOrCreate(['user_id' => $user_id, 'propiedads_id' => $propiedads_id]);
+
         return redirect()->back();
     }
+
 
     /**
      * Display the specified resource.
@@ -67,6 +69,7 @@ class FavoritosController extends Controller
      */
     public function destroy(Favoritos $favoritos)
     {
-        //
+        $favoritos->delete();
+        return redirect()->back();
     }
 }

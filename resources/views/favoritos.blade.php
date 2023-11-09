@@ -42,9 +42,10 @@
                     <a style="text-decoration: none;" href="https://www.youtube.com/">
                         <h6 style="font-size: 21px;" class="card-title text-primary">{{$fav->propiedads->titulo}}</h6>
                     </a>
-                    <button class="btn btn-succes">
+                    <a class="text-success" href="{{ route('favoritos.destroy',['favoritos'=>$fav->id]) }}">
                         <i class="fas fa-heart"></i>
-                    </button>
+                    </a>
+
                 </div>
 
                 <h6 class="card-text text-secondary">Habitaciones: {{$fav->propiedads->habitaciones}}</h6>
